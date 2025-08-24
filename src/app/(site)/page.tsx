@@ -24,7 +24,10 @@ export default function HomePage() {
       <AboutTeaser />
 
       {/* Stats Section */}
-      <section id="stats" className="h-screen flex items-center justify-center bg-muted/50 min-h-[600px] scroll-mt-24">
+      <section 
+        id="stats" 
+        className="relative z-10 mt-6 sm:mt-8 md:mt-12 translate-y-0 lg:-translate-y-10 lg:mt-0 py-16 sm:py-20 md:py-24 lg:h-screen lg:flex lg:items-center lg:justify-center bg-muted/50 lg:min-h-[600px] scroll-mt-28 md:scroll-mt-32"
+      >
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +73,10 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects Section */}
-      <section id="projects" className="h-screen flex items-center justify-center min-h-[700px] py-8 scroll-mt-24">
+      <section 
+        id="projects" 
+        className="relative z-0 mt-8 sm:mt-12 md:mt-16 translate-y-0 lg:translate-y-0 overflow-visible py-16 sm:py-20 md:py-24 lg:h-screen lg:flex lg:items-center lg:justify-center lg:min-h-[700px] scroll-mt-28 md:scroll-mt-32"
+      >
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -109,7 +115,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Posts Section */}
-      <section id="blog" className="scroll-mt-24">
+      <section id="blog" className="scroll-mt-28 md:scroll-mt-32">
         <ArticlesSection limit={4} />
       </section>
     </div>

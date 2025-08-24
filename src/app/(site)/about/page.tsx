@@ -121,7 +121,7 @@ export default function AboutPage() {
 
         <div className="max-w-6xl mx-auto px-4 space-y-20 py-12">
           {/* Overview Section */}
-          <section id="overview" className="scroll-mt-24">
+          <section id="overview" className="scroll-mt-28 md:scroll-mt-32">
             <div className="space-y-12">
               <div className="text-center space-y-4">
                 <h2 className="text-3xl font-bold text-foreground">Overview</h2>
@@ -142,7 +142,7 @@ export default function AboutPage() {
           </section>
 
           {/* Skills Section */}
-          <section id="skills" className="scroll-mt-24">
+          <section id="skills" className="scroll-mt-28 md:scroll-mt-32">
             <div className="space-y-8">
               <div className="text-center space-y-4">
                 <h2 className="text-3xl font-bold text-foreground">Skills & Expertise</h2>
@@ -159,12 +159,12 @@ export default function AboutPage() {
           </section>
 
           {/* Highlights Section */}
-          <section id="highlights" className="scroll-mt-24">
+          <section id="highlights" className="scroll-mt-28 md:scroll-mt-32">
             <Highlights highlights={data.highlights} />
           </section>
 
           {/* Certifications Section */}
-          <section id="certifications" className="scroll-mt-24">
+          <section id="certifications" className="scroll-mt-28 md:scroll-mt-32">
             <div className="space-y-8">
               <div className="text-center space-y-4">
                 <h2 className="text-3xl font-bold text-foreground">Sertifikasi Profesional</h2>
@@ -180,7 +180,7 @@ export default function AboutPage() {
           </section>
 
           {/* Timeline Section */}
-          <section id="timeline" className="scroll-mt-24">
+          <section id="timeline" className="scroll-mt-28 md:scroll-mt-32">
             <Timeline events={data.timeline} />
           </section>
         </div>

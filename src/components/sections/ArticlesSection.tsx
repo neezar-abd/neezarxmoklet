@@ -76,7 +76,7 @@ export function ArticlesSection({ limit = 4 }: ArticlesSectionProps) {
 
   if (loading) {
     return (
-      <section id="articles" className="scroll-mt-24 py-20 bg-gradient-to-br from-background via-background to-muted/20">
+      <section id="articles" className="scroll-mt-28 md:scroll-mt-32 py-20 bg-gradient-to-br from-background via-background to-muted/20">
         <div className="container">
           <div className="animate-pulse space-y-8">
             <div className="text-center space-y-4">
@@ -96,7 +96,7 @@ export function ArticlesSection({ limit = 4 }: ArticlesSectionProps) {
   }
 
   return (
-    <section id="articles" className="scroll-mt-24 py-20 bg-gradient-to-br from-background via-background to-muted/20">
+    <section id="articles" className="scroll-mt-28 md:scroll-mt-32 py-20 bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -195,7 +195,7 @@ export function ArticlesSection({ limit = 4 }: ArticlesSectionProps) {
             className={cn(
               "inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-semibold transition-all duration-300",
               "bg-gradient-to-r from-primary via-primary to-red-600 text-primary-foreground",
-              "hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-1",
+              "hover:shadow-lg hover:shadow-primary/25 hover:lg:-translate-y-1",
               "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
               "active:translate-y-0",
               "motion-reduce:transform-none motion-reduce:transition-none"

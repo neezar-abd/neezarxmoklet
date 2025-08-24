@@ -243,7 +243,7 @@ function BlogPageInner() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="group h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <Card className="group h-full hover:shadow-lg transition-all duration-300 hover:lg:-translate-y-1">
                   <CardHeader>
                     <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
                       <div className="flex items-center gap-1">

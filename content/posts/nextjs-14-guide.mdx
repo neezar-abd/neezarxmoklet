@@ -1,0 +1,110 @@
+---
+title: "Membangun Website Modern dengan Next.js 14"
+date: "2024-08-15"
+tags: ["Next.js", "React", "TypeScript", "Web Development"]
+description: "Panduan lengkap untuk memulai proyek dengan Next.js 14 dan fitur-fitur terbarunya seperti App Router, Server Components, dan streaming."
+ogImage: "/images/blog/nextjs-14-guide.jpg"
+---
+
+# Membangun Website Modern dengan Next.js 14
+
+Next.js 14 membawa banyak fitur baru yang revolusioner untuk pengembangan web modern. Dalam artikel ini, kita akan membahas cara membangun website yang performant dan scalable.
+
+## Fitur-Fitur Baru Next.js 14
+
+### 1. App Router (Stable)
+
+App Router adalah cara baru untuk mengorganisir routing di Next.js. Dengan menggunakan folder-based routing, kita bisa membuat struktur yang lebih intuitif:
+
+```tsx
+app/
+  layout.tsx
+  page.tsx
+  about/
+    page.tsx
+  blog/
+    page.tsx
+    [slug]/
+      page.tsx
+```
+
+### 2. Server Components
+
+Server Components memungkinkan kita untuk render komponen di server, mengurangi JavaScript bundle yang dikirim ke client:
+
+```tsx
+// app/posts/page.tsx
+import { getPosts } from '@/lib/posts'
+
+export default async function PostsPage() {
+  const posts = await getPosts() // Fetching di server
+
+  return (
+    <div>
+      {posts.map(post => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.excerpt}</p>
+        </article>
+      ))}
+    </div>
+  )
+}
+```
+
+### 3. Streaming dengan Suspense
+
+Streaming memungkinkan loading partial content:
+
+```tsx
+import { Suspense } from 'react'
+import { PostList } from '@/components/PostList'
+import { PostSkeleton } from '@/components/PostSkeleton'
+
+export default function BlogPage() {
+  return (
+    <div>
+      <h1>Blog Posts</h1>
+      <Suspense fallback={<PostSkeleton />}>
+        <PostList />
+      </Suspense>
+    </div>
+  )
+}
+```
+
+## Best Practices
+
+### Performance Optimization
+
+1. **Image Optimization**: Gunakan `next/image` untuk lazy loading dan format optimization
+2. **Font Optimization**: Utilize `next/font` untuk loading font yang optimal
+3. **Bundle Analysis**: Regular check dengan `@next/bundle-analyzer`
+
+### SEO dan Metadata
+
+```tsx
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Blog Post Title',
+  description: 'Blog post description',
+  openGraph: {
+    title: 'Blog Post Title',
+    description: 'Blog post description',
+    images: ['/og-image.jpg'],
+  },
+}
+```
+
+## Kesimpulan
+
+Next.js 14 memberikan foundation yang solid untuk membangun aplikasi web modern. Dengan App Router, Server Components, dan fitur streaming, kita bisa membuat aplikasi yang fast, scalable, dan SEO-friendly.
+
+Untuk memulai proyek Next.js 14:
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --app
+```
+
+Happy coding! 🚀

@@ -1,0 +1,88 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "slug": "ecommerce-platform",
+      "description": "Platform e-commerce modern dengan Next.js, TypeScript, dan Stripe integration untuk pembayaran yang aman.",
+      "longDescription": "Sebuah platform e-commerce lengkap yang dibangun menggunakan teknologi modern. Fitur utama meliputi katalog produk, sistem keranjang belanja, integrasi pembayaran Stripe, dashboard admin, dan sistem autentikasi yang aman.",
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Stripe", "PostgreSQL", "Prisma"],
+      "category": "Full Stack",
+      "year": 2024,
+      "featured": true,
+      "image": "/images/projects/ecommerce.jpg",
+      "gallery": [
+        "/images/projects/ecommerce/1.jpg",
+        "/images/projects/ecommerce/2.jpg",
+        "/images/projects/ecommerce/3.jpg"
+      ],
+      "links": {
+        "github": "https://github.com/neezarxmoklet/ecommerce-platform",
+        "demo": "https://ecommerce-demo.vercel.app"
+      },
+      "highlights": [
+        "Integrasi pembayaran Stripe yang aman",
+        "Dashboard admin untuk manajemen produk",
+        "Sistem autentikasi dan otorisasi",
+        "Responsive design untuk semua device",
+        "Performance optimization dengan Next.js"
+      ],
+      "challenges": "Implementasi sistem pembayaran yang aman dan integrasi dengan inventory management.",
+      "solution": "Menggunakan Stripe untuk payment processing dan implementasi webhook untuk sinkronisasi data real-time."
+    },
+    {
+      "id": 2,
+      "title": "Task Management App",
+      "slug": "task-management-app",
+      "description": "Aplikasi manajemen tugas dengan real-time collaboration dan drag & drop interface yang intuitif.",
+      "longDescription": "Aplikasi produktivitas untuk tim yang memungkinkan kolaborasi real-time, manajemen project, dan tracking progress. Dilengkapi dengan fitur drag & drop, notifikasi real-time, dan dashboard analytics.",
+      "tech": ["React", "Node.js", "Socket.io", "MongoDB", "Express", "Redis"],
+      "category": "Full Stack",
+      "year": 2024,
+      "featured": true,
+      "image": "/images/projects/taskapp.jpg",
+      "gallery": [
+        "/images/projects/taskapp/1.jpg",
+        "/images/projects/taskapp/2.jpg"
+      ],
+      "links": {
+        "github": "https://github.com/neezarxmoklet/task-manager",
+        "demo": "https://task-manager-demo.vercel.app"
+      },
+      "highlights": [
+        "Real-time collaboration dengan Socket.io",
+        "Drag & drop interface dengan DnD Kit",
+        "Sistem notifikasi real-time",
+        "Dashboard analytics dan reporting",
+        "Multi-workspace support"
+      ],
+      "challenges": "Implementasi real-time collaboration tanpa conflict dan optimasi performance untuk banyak user.",
+      "solution": "Menggunakan operational transformation dan conflict resolution algorithm untuk sync data real-time."
+    },
+    {
+      "id": 3,
+      "title": "Weather Dashboard",
+      "slug": "weather-dashboard",
+      "description": "Dashboard cuaca interaktif dengan visualisasi data dan prediksi cuaca menggunakan multiple API.",
+      "longDescription": "Dashboard cuaca yang menampilkan data real-time dari multiple sources, visualisasi data dengan charts, dan prediksi cuaca. Fitur geolocation, search city, dan historical weather data.",
+      "tech": ["Vue.js", "Chart.js", "OpenWeather API", "Vuex", "Tailwind CSS"],
+      "category": "Frontend",
+      "year": 2023,
+      "featured": true,
+      "image": "/images/projects/weather.jpg",
+      "links": {
+        "github": "https://github.com/neezarxmoklet/weather-dashboard",
+        "demo": "https://weather-demo.vercel.app"
+      },
+      "highlights": [
+        "Multiple weather API integration",
+        "Interactive charts dengan Chart.js",
+        "Geolocation support",
+        "7-day weather forecast",
+        "Responsive design"
+      ],
+      "challenges": "Integrasi multiple weather API dan handling rate limits dari different providers.",
+      "solution": "Implementasi API aggregation layer dengan fallback mechanism dan caching strategy."
+    }
+  ]
+}

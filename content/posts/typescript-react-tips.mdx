@@ -1,0 +1,289 @@
+---
+title: "TypeScript Tips untuk Developer React"
+date: "2024-08-10"
+tags: ["TypeScript", "React", "JavaScript", "Developer Tips"]
+description: "Kumpulan tips dan best practices TypeScript yang akan meningkatkan produktivitas dan kualitas kode React Anda."
+ogImage: "/images/blog/typescript-react-tips.jpg"
+---
+
+# TypeScript Tips untuk Developer React
+
+TypeScript telah menjadi standar de facto untuk pengembangan React modern. Berikut adalah tips dan best practices yang akan membuat kode Anda lebih robust dan maintainable.
+
+## 1. Proper Component Typing
+
+### Function Components
+
+```tsx
+interface ButtonProps {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary';
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  variant = 'primary', 
+  onClick,
+  disabled = false 
+}) => {
+  return (
+    <button 
+      className={`btn btn-${variant}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### Generic Components
+
+```tsx
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+  keyExtractor: (item: T) => string | number;
+}
+
+function List<T>({ items, renderItem, keyExtractor }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map(item => (
+        <li key={keyExtractor(item)}>
+          {renderItem(item)}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## 2. Custom Hooks dengan TypeScript
+
+```tsx
+interface UseLocalStorageReturn<T> {
+  value: T;
+  setValue: (value: T) => void;
+  removeValue: () => void;
+}
+
+function useLocalStorage<T>(
+  key: string, 
+  initialValue: T
+): UseLocalStorageReturn<T> {
+  const [value, setValue] = useState<T>(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
+  });
+
+  const setStoredValue = (value: T) => {
+    try {
+      setValue(value);
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error(`Error setting localStorage key "${key}":`, error);
+    }
+  };
+
+  const removeValue = () => {
+    try {
+      window.localStorage.removeItem(key);
+      setValue(initialValue);
+    } catch (error) {
+      console.error(`Error removing localStorage key "${key}":`, error);
+    }
+  };
+
+  return { value, setValue: setStoredValue, removeValue };
+}
+```
+
+## 3. Event Handling
+
+```tsx
+interface FormProps {
+  onSubmit: (data: { email: string; password: string }) => void;
+}
+
+const LoginForm: React.FC<FormProps> = ({ onSubmit }) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    onSubmit({
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+    });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input 
+        name="email" 
+        type="email" 
+        onChange={handleInputChange}
+        required 
+      />
+      <input 
+        name="password" 
+        type="password" 
+        onChange={handleInputChange}
+        required 
+      />
+      <button type="submit">Login</button>
+    </form>
+  );
+};
+```
+
+## 4. Utility Types
+
+### Pick dan Omit
+
+```tsx
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: 'admin' | 'user';
+}
+
+// Hanya ambil field tertentu
+type PublicUser = Pick<User, 'id' | 'name' | 'email'>;
+
+// Exclude field tertentu
+type CreateUserInput = Omit<User, 'id'>;
+
+// Partial untuk update
+type UpdateUserInput = Partial<Omit<User, 'id'>>;
+```
+
+### Conditional Types
+
+```tsx
+type ApiResponse<T> = {
+  data: T;
+  status: 'success';
+} | {
+  error: string;
+  status: 'error';
+};
+
+function handleApiResponse<T>(response: ApiResponse<T>) {
+  if (response.status === 'success') {
+    // TypeScript tahu ini adalah success case
+    console.log(response.data);
+  } else {
+    // TypeScript tahu ini adalah error case
+    console.error(response.error);
+  }
+}
+```
+
+## 5. Context API dengan TypeScript
+
+```tsx
+interface AuthContextType {
+  user: User | null;
+  login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
+  loading: boolean;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export const useAuth = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ 
+  children 
+}) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const login = async (email: string, password: string) => {
+    setLoading(true);
+    try {
+      const user = await authService.login(email, password);
+      setUser(user);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const logout = () => {
+    setUser(null);
+    authService.logout();
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+```
+
+## Tools dan Setup
+
+### TypeScript Config
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "es6"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  }
+}
+```
+
+### Linting Rules
+
+```json
+{
+  "extends": [
+    "@typescript-eslint/recommended",
+    "@typescript-eslint/recommended-requiring-type-checking"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/no-explicit-any": "error"
+  }
+}
+```
+
+## Kesimpulan
+
+TypeScript dengan React memberikan developer experience yang luar biasa dengan type safety, IntelliSense yang powerful, dan refactoring yang aman. Dengan mengikuti best practices di atas, kode Anda akan menjadi lebih maintainable dan less error-prone.
+
+Happy typing! 🎯

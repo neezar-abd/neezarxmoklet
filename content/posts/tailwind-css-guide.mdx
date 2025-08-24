@@ -1,0 +1,350 @@
+---
+title: "Tailwind CSS: Utility-First CSS Framework"
+date: "2024-08-05"
+tags: ["Tailwind CSS", "CSS", "Frontend", "Design System"]
+description: "Mengapa Tailwind CSS menjadi pilihan utama developer modern dan bagaimana cara mengoptimalkan penggunaannya dalam proyek."
+ogImage: "/images/blog/tailwind-css-guide.jpg"
+---
+
+# Tailwind CSS: Utility-First CSS Framework
+
+Tailwind CSS telah mengubah cara developer menulis CSS. Dengan pendekatan utility-first, kita bisa membangun interface yang beautiful dan responsive dengan cepat.
+
+## Mengapa Tailwind CSS?
+
+### 1. Utility-First Approach
+
+Alih-alih menulis CSS custom, Tailwind menyediakan utility classes yang bisa dikombinasikan:
+
+```html
+<!-- Traditional CSS -->
+<div class="card">
+  <h2 class="card-title">Title</h2>
+  <p class="card-description">Description</p>
+</div>
+
+<!-- Tailwind CSS -->
+<div class="bg-white rounded-lg shadow-md p-6">
+  <h2 class="text-xl font-bold text-gray-900 mb-2">Title</h2>
+  <p class="text-gray-600">Description</p>
+</div>
+```
+
+### 2. Design System Built-in
+
+Tailwind menyediakan design system yang konsisten dengan spacing, colors, dan typography scale:
+
+```css
+/* Spacing Scale */
+.p-1  { padding: 0.25rem; }  /* 4px */
+.p-2  { padding: 0.5rem; }   /* 8px */
+.p-4  { padding: 1rem; }     /* 16px */
+.p-6  { padding: 1.5rem; }   /* 24px */
+
+/* Color Palette */
+.bg-blue-50   { background-color: #eff6ff; }
+.bg-blue-500  { background-color: #3b82f6; }
+.bg-blue-900  { background-color: #1e3a8a; }
+```
+
+## Custom Configuration
+
+### tailwind.config.js
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#fef2f2',
+          500: '#ef4444',
+          900: '#7f1d1d',
+        },
+        brand: '#e60011', // SMK Telkom
+      },
+      fontFamily: {
+        display: ['Inter', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.3s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+    },
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+  ],
+}
+```
+
+## Component Patterns
+
+### 1. Card Component
+
+```tsx
+interface CardProps {
+  children: React.ReactNode;
+  variant?: 'default' | 'outlined' | 'elevated';
+  className?: string;
+}
+
+const Card: React.FC<CardProps> = ({ 
+  children, 
+  variant = 'default', 
+  className = '' 
+}) => {
+  const baseClasses = 'rounded-lg overflow-hidden';
+  
+  const variantClasses = {
+    default: 'bg-white border border-gray-200',
+    outlined: 'bg-transparent border-2 border-gray-300',
+    elevated: 'bg-white shadow-lg border-0',
+  };
+
+  return (
+    <div className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
+      {children}
+    </div>
+  );
+};
+```
+
+### 2. Button System
+
+```tsx
+const buttonVariants = {
+  primary: 'bg-primary-500 hover:bg-primary-600 text-white',
+  secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-900',
+  outline: 'border-2 border-primary-500 text-primary-500 hover:bg-primary-50',
+  ghost: 'text-primary-500 hover:bg-primary-50',
+};
+
+const buttonSizes = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2 text-base',
+  lg: 'px-6 py-3 text-lg',
+};
+
+interface ButtonProps {
+  variant?: keyof typeof buttonVariants;
+  size?: keyof typeof buttonSizes;
+  children: React.ReactNode;
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({
+  variant = 'primary',
+  size = 'md',
+  children,
+  onClick,
+  disabled = false,
+}) => {
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  
+  return (
+    <button
+      className={`${baseClasses} ${buttonVariants[variant]} ${buttonSizes[size]}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+## Responsive Design
+
+Tailwind menggunakan mobile-first approach:
+
+```html
+<!-- Mobile: p-4, Tablet: p-6, Desktop: p-8 -->
+<div class="p-4 md:p-6 lg:p-8">
+  <!-- Mobile: stack vertical, Desktop: grid 2 columns -->
+  <div class="space-y-4 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0">
+    <div>Column 1</div>
+    <div>Column 2</div>
+  </div>
+</div>
+```
+
+### Breakpoint System
+
+```css
+/* sm: 640px and up */
+.sm\:text-xl { font-size: 1.25rem; }
+
+/* md: 768px and up */
+.md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* lg: 1024px and up */
+.lg\:p-8 { padding: 2rem; }
+
+/* xl: 1280px and up */
+.xl\:text-6xl { font-size: 3.75rem; }
+```
+
+## Dark Mode Support
+
+```html
+<!-- Toggle between light and dark -->
+<div class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+  <h1 class="text-2xl font-bold">Title</h1>
+  <p class="text-gray-600 dark:text-gray-300">Description</p>
+</div>
+```
+
+### Dark Mode Config
+
+```js
+// tailwind.config.js
+module.exports = {
+  darkMode: 'class', // or 'media'
+  // ... rest of config
+}
+```
+
+## Performance Optimization
+
+### 1. Purge Unused CSS
+
+Tailwind secara otomatis remove unused classes di production:
+
+```js
+module.exports = {
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
+  // ...
+}
+```
+
+### 2. JIT Mode
+
+Just-In-Time compilation untuk faster builds:
+
+```js
+module.exports = {
+  mode: 'jit',
+  // ...
+}
+```
+
+## Best Practices
+
+### 1. Component Composition
+
+```tsx
+// Bad: Inline classes everywhere
+<button className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md">
+  Click me
+</button>
+
+// Good: Extract to component
+<Button variant="primary">Click me</Button>
+```
+
+### 2. Consistent Spacing
+
+```tsx
+// Use spacing scale consistently
+<div className="space-y-4"> {/* 16px gap */}
+  <div className="p-4"> {/* 16px padding */}
+    <h2 className="mb-2">Title</h2> {/* 8px margin */}
+    <p>Content</p>
+  </div>
+</div>
+```
+
+### 3. Custom Utilities
+
+```css
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+```
+
+## Tools dan Plugin
+
+### 1. Tailwind CSS IntelliSense
+
+VS Code extension untuk autocomplete dan class suggestions.
+
+### 2. Headless UI
+
+Pre-built accessible components:
+
+```tsx
+import { Dialog, Transition } from '@headlessui/react'
+
+function Modal({ isOpen, onClose, children }) {
+  return (
+    <Transition show={isOpen} as={Fragment}>
+      <Dialog onClose={onClose} className="relative z-50">
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+        >
+          <div className="fixed inset-0 bg-black/25" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+            >
+              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                {children}
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </div>
+      </Dialog>
+    </Transition>
+  )
+}
+```
+
+## Kesimpulan
+
+Tailwind CSS memberikan:
+- **Faster Development**: Tidak perlu switching antara HTML dan CSS
+- **Consistent Design**: Built-in design system
+- **Better Performance**: Purged CSS di production
+- **Easy Maintenance**: Utility classes yang predictable
+
+Dengan Tailwind, kita bisa fokus pada building features daripada wrestling dengan CSS!
+
+Start using Tailwind today! 🎨

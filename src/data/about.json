@@ -1,0 +1,234 @@
+{
+  "kpi": [
+    { "label": "Tahun Pengalaman", "value": "7+" },
+    { "label": "Project Completed", "value": "25+" },
+    { "label": "Team Led", "value": "5" },
+    { "label": "Performance Improvement", "value": "40%" }
+  ],
+  "skills": [
+    {
+      "category": "Frontend Development",
+      "skills": [
+        { "label": "Next.js", "level": 3, "example": "Production apps dengan SSR/SSG" },
+        { "label": "React", "level": 3, "example": "Complex state management dengan hooks" },
+        { "label": "TypeScript", "level": 3, "example": "Advanced types dan generic patterns" },
+        { "label": "Tailwind CSS", "level": 3, "example": "Custom design systems" },
+        { "label": "Framer Motion", "level": 2, "example": "Complex animations dan transitions" },
+        { "label": "Zustand", "level": 2, "example": "Global state management" }
+      ]
+    },
+    {
+      "category": "Backend Development",
+      "skills": [
+        { "label": "Node.js", "level": 3, "example": "Scalable API servers" },
+        { "label": "Express.js", "level": 3, "example": "RESTful APIs dengan middleware" },
+        { "label": "PostgreSQL", "level": 2, "example": "Query optimization dan indexing" },
+        { "label": "MongoDB", "level": 2, "example": "Document-based data modeling" },
+        { "label": "Redis", "level": 2, "example": "Caching dan session management" },
+        { "label": "GraphQL", "level": 2, "example": "Schema design dan resolvers" }
+      ]
+    },
+    {
+      "category": "DevOps & Tools",
+      "skills": [
+        { "label": "Docker", "level": 3, "example": "Multi-stage builds dan containerization" },
+        { "label": "AWS", "level": 2, "example": "EC2, S3, Lambda deployment" },
+        { "label": "Vercel", "level": 3, "example": "CI/CD dengan preview deployments" },
+        { "label": "Git", "level": 3, "example": "Advanced workflows dan conflict resolution" },
+        { "label": "Nginx", "level": 2, "example": "Load balancing dan reverse proxy" },
+        { "label": "GitHub Actions", "level": 2, "example": "Automated testing dan deployment" }
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "E-commerce Platform Modernization",
+      "context": "Legacy monolith system dengan performa rendah dan maintenance cost tinggi yang menghambat growth bisnis",
+      "challenge": "System tidak scalable, deployment process manual, dan frequent downtime pada peak traffic",
+      "actions": [
+        "Lead migration dari monolith ke microservices architecture",
+        "Implement Next.js 14 dengan App Router untuk frontend modernization",
+        "Setup CI/CD pipeline dengan automated testing dan blue-green deployment",
+        "Optimize database queries dan implement Redis caching strategy"
+      ],
+      "results": [
+        "40% improvement pada page load time (2.1s → 1.2s)",
+        "60% reduction deployment time (45min → 18min)",
+        "75% reduction bug rate (12/week → 3/week)",
+        "99.9% uptime achievement selama 6 bulan terakhir"
+      ],
+      "impact": "Revenue increase 30% due to better UX dan reduced cart abandonment",
+      "tech": ["Next.js 14", "TypeScript", "Microservices", "Docker", "AWS", "Redis"],
+      "year": "2023",
+      "link": "https://github.com/neezar/ecommerce-modernization"
+    },
+    {
+      "title": "Real-time Analytics Dashboard",
+      "context": "Tim sales membutuhkan insight real-time untuk decision making yang cepat dan accurate",
+      "challenge": "Data pipeline existing memiliki latency 5 menit dan dashboard tidak responsive",
+      "actions": [
+        "Build real-time dashboard dengan React dan WebSocket integration",
+        "Implement optimized data pipeline dengan stream processing",
+        "Design responsive UI dengan charts dan KPI widgets",
+        "Setup automated alerting system untuk anomaly detection"
+      ],
+      "results": [
+        "98% reduction data latency (5min → 5s)",
+        "25% increase sales conversion rate (12% → 15%)",
+        "98% improvement user adoption (45% → 89%)",
+        "Real-time monitoring dengan 99.5% accuracy"
+      ],
+      "impact": "Sales team mampu respond 10x lebih cepat terhadap market changes",
+      "tech": ["React", "WebSocket", "D3.js", "Node.js", "Apache Kafka", "MongoDB"],
+      "year": "2023",
+      "isConfidential": true
+    },
+    {
+      "title": "API Gateway & Microservices Architecture",
+      "context": "Multiple teams dengan different tech stack dan inconsistent API standards menyebabkan integration hell",
+      "challenge": "Development velocity lambat dan integration antar services memakan waktu weeks",
+      "actions": [
+        "Design unified API gateway dengan standardized protocols",
+        "Implement comprehensive API documentation dengan OpenAPI 3.0",
+        "Setup centralized monitoring dan logging system",
+        "Create developer portal dengan interactive API testing"
+      ],
+      "results": [
+        "79% reduction integration time (2weeks → 3days)",
+        "0.6% improvement API uptime (99.2% → 99.8%)",
+        "167% increase development velocity (3 → 8 features/sprint)",
+        "95% developer satisfaction score pada internal survey"
+      ],
+      "impact": "Engineering productivity boost enable faster time-to-market",
+      "tech": ["API Gateway", "OpenAPI", "Docker", "Kubernetes", "Prometheus", "Grafana"],
+      "year": "2022"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Meta Front-End Developer Professional Certificate",
+      "issuer": "Coursera",
+      "year": "2024",
+      "category": "Frontend Development",
+      "skills": ["React", "JavaScript", "UI/UX", "Git"],
+      "verifyUrl": "https://coursera.org/verify/professional-cert/...",
+      "badgeUrl": "/images/certs/meta-frontend.png",
+      "credentialId": "META-FE-2024-001"
+    },
+    {
+      "name": "Google Cloud Fundamentals",
+      "issuer": "Google Cloud",
+      "year": "2024",
+      "category": "Cloud Computing",
+      "skills": ["GCP", "Cloud Computing", "DevOps"],
+      "verifyUrl": "https://cloud.google.com/certification/verify/...",
+      "badgeUrl": "/images/certs/google-cloud.png",
+      "credentialId": "GCP-FUND-2024-789"
+    },
+    {
+      "name": "Advanced React Patterns",
+      "issuer": "Epic React",
+      "year": "2024",
+      "category": "Frontend Development",
+      "skills": ["React", "TypeScript", "Performance"],
+      "verifyUrl": "https://epicreact.dev/verify/...",
+      "badgeUrl": "/images/certs/epic-react.png"
+    },
+    {
+      "name": "Next.js 14 Mastery",
+      "issuer": "Vercel",
+      "year": "2024",
+      "category": "Frontend Development",
+      "skills": ["Next.js", "React", "SSR", "Performance"],
+      "verifyUrl": "https://vercel.com/verify/...",
+      "badgeUrl": "/images/certs/nextjs-mastery.png"
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2024",
+      "title": "Senior Software Engineer",
+      "organization": "TechCorp Indonesia",
+      "location": "Jakarta, Indonesia",
+      "type": "work",
+      "description": "Leading frontend development team untuk enterprise applications dengan focus pada performance optimization dan user experience.",
+      "highlights": [
+        "Lead team of 5 developers dalam modernization project",
+        "Implement design system yang digunakan oleh 3 product teams",
+        "Achieve 40% improvement pada application performance metrics"
+      ],
+      "tech": ["Next.js", "TypeScript", "Tailwind CSS", "Docker", "AWS"],
+      "isOngoing": true
+    },
+    {
+      "year": "2022-2024",
+      "title": "Full Stack Developer",
+      "organization": "StartupXYZ",
+      "location": "Bandung, Indonesia",
+      "type": "work",
+      "description": "Develop dan maintain multiple web applications untuk startup di bidang e-commerce dan fintech.",
+      "highlights": [
+        "Build e-commerce platform dari scratch dengan Next.js",
+        "Implement payment gateway integration dengan multiple providers",
+        "Setup CI/CD pipeline yang reduce deployment time 60%"
+      ],
+      "tech": ["React", "Node.js", "PostgreSQL", "Redis", "Vercel"]
+    },
+    {
+      "year": "2020-2022",
+      "title": "Frontend Developer",
+      "organization": "DigitalAgency",
+      "location": "Jakarta, Indonesia",
+      "type": "work",
+      "description": "Develop responsive web applications untuk klien corporate dan government.",
+      "highlights": [
+        "Deliver 15+ projects dengan 100% client satisfaction",
+        "Implement accessibility standards (WCAG 2.1 AA)",
+        "Lead adoption of React dan modern frontend tools"
+      ],
+      "tech": ["React", "JavaScript", "SASS", "Webpack", "PHP"]
+    },
+    {
+      "year": "2017-2020",
+      "title": "Junior Web Developer",
+      "organization": "WebStudio",
+      "location": "Bandung, Indonesia",
+      "type": "work",
+      "description": "Start karir sebagai web developer dengan focus pada HTML, CSS, dan JavaScript fundamentals.",
+      "highlights": [
+        "Learn modern JavaScript (ES6+) dan React ecosystem",
+        "Contribute ke team projects dengan quality code",
+        "Rapid learning curve dan adaptasi dengan new technologies"
+      ],
+      "tech": ["HTML", "CSS", "JavaScript", "jQuery", "WordPress"]
+    },
+    {
+      "year": "2013-2017",
+      "title": "Sarjana Teknik Informatika",
+      "organization": "Universitas Pendidikan Indonesia",
+      "location": "Bandung, Indonesia",
+      "type": "education",
+      "description": "Bachelor degree dalam Computer Science dengan specialization di Software Engineering.",
+      "highlights": [
+        "Cumulative GPA: 3.7/4.0",
+        "Final project: Web-based Learning Management System",
+        "Active di komunitas programming dan tech events"
+      ],
+      "tech": ["Java", "C++", "Database", "Software Engineering", "Algorithms"]
+    },
+    {
+      "year": "2024",
+      "title": "Meta Front-End Developer Certificate",
+      "organization": "Coursera",
+      "location": "Online",
+      "type": "achievement",
+      "description": "Complete professional certificate program focusing on modern frontend development practices.",
+      "highlights": [
+        "Master React advanced patterns dan performance optimization",
+        "Learn industry best practices untuk UI/UX development",
+        "Complete capstone project dengan real-world application"
+      ],
+      "tech": ["React", "JavaScript", "UI/UX", "Git", "Testing"]
+    }
+  ]
+}

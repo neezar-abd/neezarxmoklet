@@ -25,8 +25,8 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: {
-    default: 'Neezar Abdurrahman Ahnaf Abiyyi (Neezar Abd) — Software Engineer / DevOps / Web Developer',
-    template: '%s | Neezar Abd',
+    default: 'Neezar Abd',
+    template: '%s — Neezar Abd',
   },
   description: 'Portfolio resmi Neezar Abdurrahman Ahnaf Abiyyi (Neezar Abd). Fokus pada Next.js, React, TypeScript, Tailwind CSS, dan MongoDB/Firebase. Menyediakan solusi web modern yang cepat, aman, dan mudah di-scale. Open to Internship (remote/onsite).',
   keywords: [
@@ -93,11 +93,6 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#e60011" />
         <meta name="msapplication-TileColor" content="#e60011" />
       </head>

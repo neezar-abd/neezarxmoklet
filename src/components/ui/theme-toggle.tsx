@@ -1,7 +1,7 @@
 'use client';
 
 import { useTheme } from "next-themes";
-import { useEffect, useState, MouseEvent } from "react";
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -21,7 +21,7 @@ export function ThemeToggle() {
     );
   }
 
-  const toggle = (e: MouseEvent<HTMLButtonElement>) => {
+  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const x = e.clientX;
     const y = e.clientY;
     const isDark = (resolvedTheme ?? theme) === "dark";
@@ -32,40 +32,46 @@ export function ThemeToggle() {
       Math.max(y, window.innerHeight - y)
     );
 
-    // Fallback fade (no View Transitions or reduced motion)
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const startTransition = (fn: () => void) => {
-      if (!("startViewTransition" in document) || prefersReduced) {
-        document.documentElement.classList.add("theme-fade");
-        fn();
-        window.setTimeout(() => {
-          document.documentElement.classList.remove("theme-fade");
-        }, 250);
-        return { ready: Promise.resolve() } as any;
-      }
-      // @ts-ignore experimental API
-      return document.startViewTransition(fn);
+    // @ts-ignore experimental check
+    const canVT = "startViewTransition" in document && !prefersReduced;
+
+    const fallback = (mutate: () => void) => {
+      document.documentElement.classList.add("theme-fade", "theme-switching");
+      mutate();
+      setTimeout(() => {
+        document.documentElement.classList.remove("theme-fade", "theme-switching");
+      }, 250);
     };
 
-    const transition = startTransition(() => setTheme(next));
+    if (!canVT) return fallback(() => setTheme(next));
 
-    // Radial wipe (View Transitions)
-    transition.ready?.then?.(() => {
+    document.documentElement.classList.add("theme-switching");
+    // @ts-ignore experimental API
+    const vt = document.startViewTransition(() => {
+      // Mutasi DOM sinkron: hanya ganti theme
+      setTheme(next);
+    });
+
+    vt.ready.then(() => {
+      const mobile = window.innerWidth <= 768;
+      const opts: KeyframeAnimationOptions = { duration: mobile ? 320 : 420, easing: "ease-in-out" };
       const clip = [
         `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
       ];
-      const opts: KeyframeAnimationOptions = { duration: 450, easing: "ease-in-out" };
-      // new theme fades in
       document.documentElement.animate(
         { clipPath: clip },
         { ...opts, pseudoElement: "::view-transition-new(root)" }
       );
-      // old theme fades out
       document.documentElement.animate(
         { clipPath: clip.slice().reverse() },
         { ...opts, pseudoElement: "::view-transition-old(root)" }
       );
+    }).finally(() => {
+      vt.finished.finally(() => {
+        document.documentElement.classList.remove("theme-switching");
+      });
     });
   };
 

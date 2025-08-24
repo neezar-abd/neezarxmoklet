@@ -613,17 +613,24 @@ pre[class*="language-"].line-numbers > code {
   }
 }
 
-/* View Transitions reset */
+/* Nonaktifkan animasi default VT (biar kita kontrol penuh) */
 ::view-transition-old(root),
 ::view-transition-new(root) { 
   animation: none; 
-  mix-blend-mode: normal; 
 }
 
-/* Fallback fade (applied to <html> via .theme-fade) */
+/* Saat switching theme: matikan efek berat supaya frame stabil */
+html.theme-switching * {
+  transition: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Fallback fade (untuk browser tanpa VT) – hanya properti komposit */
 html.theme-fade, 
 html.theme-fade * {
-  transition: background-color .25s ease, color .25s ease, border-color .25s ease, fill .25s ease, stroke .25s ease !important;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

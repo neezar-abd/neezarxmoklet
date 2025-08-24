@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import '../styles/globals.css';
 import { Providers } from '@/components/providers';
+import { StructuredData } from '@/components/seo/StructuredData';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({
@@ -105,6 +106,7 @@ export default function RootLayout({
         )}
       >
         <Providers>
+          <StructuredData />
           {children}
         </Providers>
       </body>

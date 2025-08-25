@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
 import '../styles/globals.css';
 import { Providers } from '@/components/providers';
 import { StructuredData } from '@/components/seo/StructuredData';
@@ -7,14 +8,8 @@ import { cn } from '@/lib/utils';
 
 const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-inter',
   display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
+  variable: '--font-body',
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -97,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" suppressHydrationWarning>
+    <html lang="id" className={`${inter.variable} ${GeistSans.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#e60011" />
         <meta name="msapplication-TileColor" content="#e60011" />
@@ -106,7 +101,7 @@ export default function RootLayout({
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
           inter.variable,
-          spaceGrotesk.variable,
+          GeistSans.variable,
           jetbrainsMono.variable
         )}
       >

@@ -73,9 +73,23 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        // default body
+        sans: [
+          "var(--font-body)",
+          "system-ui", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"
+        ],
+        // headings
+        heading: [
+          "var(--font-geist-sans)",
+          "var(--font-body)",
+          "system-ui", "sans-serif"
+        ],
+        display: [
+          "var(--font-geist-sans)",
+          "var(--font-body)",
+          "system-ui", "sans-serif"
+        ],
+        mono: ["var(--font-jetbrains-mono)", "JetBrains Mono", "Fira Code", "monospace"],
       },
       fontSize: {
         "display-2xl": ["4.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
@@ -83,6 +97,10 @@ module.exports = {
         "display-lg": ["3rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
         "display-md": ["2.25rem", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
         "display-sm": ["1.875rem", { lineHeight: "1.3", letterSpacing: "-0.01em" }],
+      },
+      letterSpacing: {
+        tightest: "-0.03em",
+        tightish: "-0.02em",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",

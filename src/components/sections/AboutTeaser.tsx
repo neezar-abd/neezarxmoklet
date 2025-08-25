@@ -5,15 +5,20 @@ import hero from "/public/images/neezar-hero.png";
 import heroSmall from "/public/images/neezar-hero-small.webp";
 import IconChip from "@/components/ui/icon-chip";
 import { MapPin, BriefcaseBusiness, CheckCheck } from "lucide-react";
+import { track } from "@/lib/analytics";
 
 export default function AboutTeaser() {
   const handleEmailCopy = async () => {
     try {
       await navigator.clipboard.writeText("neezar.dev@gmail.com");
-      // You can add a toast notification here
+      track("email_copy");
     } catch (err) {
       console.error('Failed to copy email:', err);
     }
+  };
+
+  const handleCVDownload = () => {
+    track("cv_download");
   };
 
   return (
@@ -102,6 +107,7 @@ export default function AboutTeaser() {
             <a 
               href="/Neezar-CV.pdf" 
               download
+              onClick={handleCVDownload}
               className="inline-flex h-11 items-center justify-center rounded-lg bg-[#e60011] px-5 text-white hover:bg-[#c10018] 
                          transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#e60011] focus:ring-offset-2
                          font-medium text-sm"
@@ -200,6 +206,7 @@ export default function AboutTeaser() {
           <a 
             href="/Neezar-CV.pdf" 
             download
+            onClick={handleCVDownload}
             className="inline-flex h-11 items-center justify-center rounded-lg bg-[#e60011] px-5 text-white hover:bg-[#c10018] 
                        transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#e60011] focus:ring-offset-2
                        font-medium text-sm"

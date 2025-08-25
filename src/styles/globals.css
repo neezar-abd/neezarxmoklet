@@ -619,6 +619,9 @@ pre[class*="language-"].line-numbers > code {
   animation: none; 
 }
 
+/* View Transitions API optimizations */
+::view-transition-old(root), ::view-transition-new(root){animation:none;}
+
 /* Saat switching theme: matikan efek berat supaya frame stabil */
 html.theme-switching * {
   transition: none !important;

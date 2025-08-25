@@ -24,11 +24,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: {
-    default: 'Neezar Abd',
-    template: '%s — Neezar Abd',
-  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://neezar.tech"),
+  title: { default: "Neezar Abd", template: "%s — Neezar Abd" },
   description: 'Portfolio resmi Neezar Abdurrahman Ahnaf Abiyyi (Neezar Abd). Fokus pada Next.js, React, TypeScript, Tailwind CSS, dan MongoDB/Firebase. Menyediakan solusi web modern yang cepat, aman, dan mudah di-scale. Open to Internship (remote/onsite).',
   keywords: [
     'Neezar Abd',
@@ -46,6 +43,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Neezar Abd' }],
   creator: 'Neezar Abd',
+  alternates: { canonical: "/", languages: { "id-ID": "/" } },
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=20250825", sizes: "any" },
+      { url: "/icon.png?v=20250825", type: "image/png" },
+    ],
+    apple: "/icon.png?v=20250825",
+  },
   openGraph: {
     type: 'website',
     locale: 'id_ID',
@@ -105,9 +110,10 @@ export default function RootLayout({
           jetbrainsMono.variable
         )}
       >
+        <a href="#content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-background focus:text-foreground focus:px-3 focus:py-2 focus:rounded-lg">Lewati ke konten</a>
         <Providers>
           <StructuredData />
-          {children}
+          <main id="content">{children}</main>
         </Providers>
       </body>
     </html>

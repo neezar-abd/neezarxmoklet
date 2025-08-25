@@ -13,10 +13,13 @@ import KpiMarquee from '@/components/sections/KpiMarquee';
 import { ArticlesSection } from '@/components/sections/ArticlesSection';
 import AboutTeaser from '@/components/sections/AboutTeaser';
 import Hero from '@/components/sections/Hero';
+import SeoJsonLd from '@/components/SeoJsonLd';
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col">
+    <>
+      <SeoJsonLd />
+      <div className="flex flex-col">
       {/* Hero Section */}
       <Hero />
 
@@ -119,5 +122,6 @@ export default function HomePage() {
         <ArticlesSection limit={4} />
       </section>
     </div>
+    </>
   );
 }
